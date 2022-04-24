@@ -1,8 +1,8 @@
 ###
- # @FilePath: \dev\publish.sh
+ # @FilePath: \code\publish.sh
  # @Version: 2.0
  # @LastEditors: lhl
- # @LastEditTime: 2022-04-24 10:11:21
+ # @LastEditTime: 2022-04-24 11:34:14
  # @Description: 
 ### 
 #!/usr/bin/env sh
@@ -11,6 +11,10 @@
 set -e
 
 # 生成静态文件
+git add -A
+git commit -m '发版'
+git push -f https://github.com/FFSZ-5/myblog.git dev
+
 npm run build
 
 # 进入生成的文件夹
