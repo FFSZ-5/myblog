@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --mode normal",
+    "serve": "vue-cli-service serve --mode dev",
     "build": "vue-cli-service build --mode normal",
     "lint": "vue-cli-service lint"
   },
@@ -29,9 +29,17 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
+    "github-markdown-css": "^4.0.0",
+    "highlight.js": "^10.5.0",
+    "html-loader": "^1.3.2",
+    "markdown-it": "^12.0.4",
+    "markdown-it-container": "^3.0.0",
+    "markdown-loader": "^6.0.0",
     "sass": "1.26.2",
     "sass-loader": "^7.3.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-loader": "^15.9.6",
+    "vue-markdown-loader": "^2.4.1",
+    "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
     "root": true,

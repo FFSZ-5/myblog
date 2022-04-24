@@ -1,0 +1,51 @@
+/* markdown样式 */
+$keyword : #cc99cd;
+$--text-color: rgba(255, 255, 255, 0.8);
+$variable:#eea2a4;
+$number:#f08d49;
+$string:#7ec699;
+$property:#f8c555;
+$operator:#67cdcc;
+.markdown-body {
+  h2{
+    font-size: 1.7em;
+  }
+  .hljs{
+    &-keyword{
+      color: $keyword;
+    }
+    &-variable{
+      color:$variable ;
+    }
+    &-number{
+      color: $number;
+    }
+    &-string{
+      color: $string;
+    }
+    &-property{
+      color: $property;
+    }
+    &-operator{
+      color: $operator;
+    }
+  }
+  pre{
+    position: relative;
+    background-color: #282c34;
+    border-radius: 6px;
+    color:$--text-color ;
+    .codetype{
+      cursor: pointer;
+      position: absolute;
+      right: 16px;
+      top: 16px;
+    }
+    .active{
+      color: rgb(76, 243, 76);
+    }
+    .unactive{
+      color: rgb(255, 147, 147);
+    }
+  }
+}

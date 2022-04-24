@@ -2,28 +2,36 @@
  * @FilePath: \code\src\router\index.js
  * @Version: 2.0
  * @LastEditors: lhl
- * @LastEditTime: 2022-04-24 13:34:37
+ * @LastEditTime: 2022-04-24 17:52:00
  * @Description:
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
 Vue.use(VueRouter)
+function getfilename () {
+  var requireModule = require.context('../mdfile', true, /\.md$/)
+  var arr = []
+  for (var i = 0; i < requireModule.keys().length; i++) {
+    arr.push(
+      requireModule.keys()[i].substr(2, requireModule.keys()[i].length)
+    )
+  }
+  if (arr.length > 0) {
+    const components = {}
+    for (const key of arr) {
+      components[key.split('/').pop().split('.')[0]] = import('./' + key)
+    }
+    console.log(components)
+  }
+}
+getfilename()
 const routes = [
   {
-    path: '/',
+    path: '/:name',
     name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../mdfile/test.md')
   }
+
 ]
 
 const router = new VueRouter({
