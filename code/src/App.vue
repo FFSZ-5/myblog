@@ -1,13 +1,26 @@
+<!--
+ * @FilePath: \code\src\App.vue
+ * @Version: 2.0
+ * @LastEditors: lhl
+ * @LastEditTime: 2022-04-24 13:36:15
+ * @Description:
+-->
 <template>
   <div id="app">
     <div id="nav">
-      <router-link :to="process.env.BASE_URL+'/'">Home</router-link> |
-      <router-link :to="process.env.BASE_URL+'/about'">About</router-link>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
     </div>
     <router-view />
   </div>
 </template>
-
+<script>
+console.log(process)
+export default {
+  created () {
+  }
+}
+</script>
 <style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

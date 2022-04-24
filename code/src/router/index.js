@@ -1,17 +1,23 @@
+/*
+ * @FilePath: \code\src\router\index.js
+ * @Version: 2.0
+ * @LastEditors: lhl
+ * @LastEditTime: 2022-04-24 13:34:37
+ * @Description:
+ */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
-
 const routes = [
   {
-    path: process.env.BASE_URL + '/',
+    path: '/',
     name: 'Home',
     component: Home
   },
   {
-    path: process.env.BASE_URL + '/about',
+    path: '/about',
     name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -22,7 +28,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: process.env.VUE_APP_URL,
   routes
 })
 
