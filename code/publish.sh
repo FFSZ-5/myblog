@@ -9,7 +9,7 @@ git commit -m '发版'
 git push -f https://github.com/FFSZ-5/myblog.git dev
 
 npm run build
-cp –r dist/index.html dist/404.html
+cp dist/index.html dist/404.html
 # 进入生成的文件夹
 cd dist
 
