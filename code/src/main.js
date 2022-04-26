@@ -12,6 +12,7 @@ import store from './store'
 import '../src/assets/css/common.scss'
 import 'github-markdown-css'
 import './units/markdown'
+import './units/rem'
 Vue.config.productionTip = false
 new Vue({
   router,

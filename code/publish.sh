@@ -1,10 +1,3 @@
-###
- # @FilePath: \code\publish.sh
- # @Version: 2.0
- # @LastEditors: lhl
- # @LastEditTime: 2022-04-24 13:50:33
- # @Description: 
-### 
 #!/usr/bin/env sh
 
 # 确保脚本抛出遇到的错误
@@ -15,6 +8,8 @@ git add -A
 git commit -m '发版'
 git push -f https://github.com/FFSZ-5/myblog.git dev
 
+npm run build
+cp –r dist/index.html dist/404.html
 # 进入生成的文件夹
 cd dist
 

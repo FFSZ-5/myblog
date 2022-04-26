@@ -1,10 +1,3 @@
-/*
- * @FilePath: \code\src\router\index.js
- * @Version: 2.0
- * @LastEditors: lhl
- * @LastEditTime: 2022-04-24 17:52:00
- * @Description:
- */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
@@ -19,25 +12,51 @@ function getfilename () {
   if (arr.length > 0) {
     const components = {}
     for (const key of arr) {
-      components[key.split('/').pop().split('.')[0]] = import('./' + key)
+      if (typeof (components[key.split('/')[0]]) === 'undefined') {
+        components[key.split('/')[0]] = []
+      }
+      components[key.split('/')[0]].push({
+        path: key.split('/').pop().split('.')[0],
+        name: key.split('/').pop().split('.')[0],
+        component: () => import('../mdfile/' + key)
+      })
     }
-    console.log(components)
+    const route = [{
+      path: '/',
+      name: 'Home',
+      component: () => import('@/views/home.vue')
+    }]
+    for (const key in components) {
+      route.push({
+        path: '/' + key,
+        name: key,
+        title: key,
+        component: () => import('../views/detail.vue'),
+        meta: {
+          list: components[key]
+        },
+        children: components[key]
+      })
+    }
+    return route
   }
 }
-getfilename()
-const routes = [
-  {
-    path: '/:name',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../mdfile/test.md')
-  }
 
-]
+const originalPush = VueRouter.prototype.push
+
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+const routes = getfilename()
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.VUE_APP_URL,
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  document.title = '前端学习 | ' + to.name
+  console.log(to)
+  next()
+})
 export default router

@@ -7,8 +7,12 @@
  */
 module.exports = {
   productionSourceMap: process.env.VUE_APP_TYPE !== 'normal',
-  publicPath: './',
+  publicPath: process.env.VUE_APP_TYPE !== 'normal' ? '/' : './',
+  css: {
+    extract: true
+  },
   chainWebpack: (config) => {
+    config.resolve.symlinks(true)
     config.module.rule('md').test(/\.md$/)
       .use('vue-loader')
       .loader('vue-loader')

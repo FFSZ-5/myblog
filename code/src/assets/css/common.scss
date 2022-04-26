@@ -1,4 +1,21 @@
-/* markdown样式 */
+// 公共样式
+#app,html,body{
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+$background-color: #181818;
+$box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.6);
+$nav-height: 0.6rem;
+$leftnav:2.8rem;
+//markdown变量
 $keyword : #cc99cd;
 $--text-color: rgba(255, 255, 255, 0.8);
 $variable:#eea2a4;
@@ -6,6 +23,51 @@ $number:#f08d49;
 $string:#7ec699;
 $property:#f8c555;
 $operator:#67cdcc;
+//detail
+.detail {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  .content{
+    height: calc(100%-#{$nav-height});
+    background: grey;
+    margin-left:$leftnav ;
+  }
+}
+//nav
+.nav {
+  height: $nav-height;
+  line-height: $nav-height;
+  width: 100%;
+  position: relative;
+  background: $background-color;
+  box-shadow: $box-shadow;
+  box-sizing: border-box;
+  font-size: 0.16rem;
+  color: white;
+  padding: 0 0.2rem;
+}
+//leftnav
+.leftnav{
+  position: absolute;
+  top: $nav-height;
+  left: 0;
+  height: calc(100%-#{$nav-height});
+  width:$leftnav;
+  background: $background-color;
+  font-size: .18rem;
+  color: $--text-color;
+  .title{
+    padding: .1rem .2rem;
+  }
+  li{
+    padding: .4rem .1rem .2rem;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+/* markdown样式 */
 .markdown-body {
   h2{
     font-size: 1.7em;
