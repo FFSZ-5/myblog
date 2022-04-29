@@ -27,3 +27,4 @@ git commit -m '发版'
 git push -f https://github.com/FFSZ-5/myblog.git master
 
 cd -
+sleep 10000
