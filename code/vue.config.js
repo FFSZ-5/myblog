@@ -6,7 +6,7 @@
  * @Description:
  */
 module.exports = {
-  productionSourceMap: process.env.VUE_APP_TYPE !== 'normal',
+  productionSourceMap: true,
   publicPath: process.env.VUE_APP_TYPE !== 'normal' ? '/' : './',
   css: {
     extract: true

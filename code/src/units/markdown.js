@@ -5,6 +5,7 @@
  * @LastEditTime: 2022-04-24 17:38:19
  * @Description:markdown相关的拓展
  */
+
 // 点击复制
 const toClipboard = (copySpan) => {
   const range = document.createRange()
@@ -20,7 +21,7 @@ const toClipboard = (copySpan) => {
   return false
 }
 // 页面加载完毕添加事件
-document.addEventListener('DOMContentLoaded', (event) => {
+const mdFc = (event) => {
   document.querySelectorAll('article').forEach((block) => {
     block.classList.add('markdown-body')
   })
@@ -54,4 +55,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.querySelectorAll('.markdown-body h1').forEach((block) => {
     console.log(block)
   })
-})
+}
+export const mdFunction = mdFc

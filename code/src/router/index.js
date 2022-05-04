@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 Vue.use(VueRouter)
 function getfilename () {
   var requireModule = require.context('../mdfile', true, /\.md$/)
@@ -55,8 +56,15 @@ const router = new VueRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
-  document.title = '前端学习 | ' + to.name
   console.log(to)
-  next()
+  if (to.path.includes('%')) {
+    const newpath = decodeURIComponent(to.path)
+    console.log(newpath)
+    next(newpath)
+  } else {
+    document.title = '前端学习 | ' + to.name
+    store.commit('setActiveLi', to.name)
+    next()
+  }
 })
 export default router

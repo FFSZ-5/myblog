@@ -2,15 +2,18 @@
 <template>
   <div class="detail">
     <Nav />
-    <LeftNav :list="listData" />
+    <LeftNav />
     <div class="content">
-      <router-view></router-view>
+      <div class="md-detail markdown-body"><router-view></router-view></div>
+
     </div>
   </div>
 </template>
 
 <script>
+import { mdFunction } from '@/units/markdown'
 import Nav from './components/nav'
+import store from '@/store'
 import LeftNav from './components/leftnav.vue'
 export default {
   components: {
@@ -19,13 +22,24 @@ export default {
   },
   data () {
     return {
-      listData: {}
     }
   },
   created () {
-    console.log(this.$route)
-    this.listData.title = this.$route.name
-    this.listData.list = this.$route.meta.list.map((element) => element.name)
+    if (this.$route?.meta?.list) {
+      store.commit('setLeftList', { title: this.$route.name, list: this.$route.meta.list.map((element) => element.name) })
+    } else {
+      store.commit('setLeftList', { title: this.$route.matched[0].name, list: this.$route.matched[0].meta.list.map((element) => element.name) })
+    }
+    this.$nextTick(() => {
+      console.log(11)
+      mdFunction()
+    })
+  },
+  updated () {
+    this.$nextTick(() => {
+      console.log(11)
+      mdFunction()
+    })
   }
 }
 </script>

@@ -14,11 +14,6 @@
 export default {
   created () {
 
-  },
-  methods: {
-    click () {
-      this.$router.push('/collect')
-    }
   }
 }
 </script>
