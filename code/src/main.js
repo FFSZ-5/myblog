@@ -14,7 +14,6 @@ import 'github-markdown-css'
 import './units/markdown'
 import './units/rem'
 Vue.config.productionTip = false
-console.log('main.js')
 new Vue({
   router,
   store,
