@@ -9,7 +9,7 @@
 export default {
   methods: {
     click () {
-      this.$router.push({ path: '/js' })
+      this.$router.push({ path: '/js技术收集' })
     }
   }
 }
