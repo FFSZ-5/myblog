@@ -3,8 +3,11 @@
   <div class="detail">
     <Nav />
     <LeftNav />
-    <div class="content">
-      <div class="md-detail markdown-body"><router-view></router-view></div>
+    <div class="content"
+         :class="{'full-content':!isShowLeft}">
+      <div class="md-detail markdown-body">
+        <router-view></router-view>
+      </div>
 
     </div>
   </div>
@@ -13,7 +16,7 @@
 <script>
 import { mdFunction } from '@/units/markdown'
 import Nav from './components/nav'
-import store from '@/store'
+import { mapState, mapMutations } from 'vuex'
 import LeftNav from './components/leftnav.vue'
 export default {
   components: {
@@ -24,11 +27,14 @@ export default {
     return {
     }
   },
+  computed: {
+    ...mapState(['isShowLeft'])
+  },
   created () {
     if (this.$route?.meta?.list) {
-      store.commit('setLeftList', { title: this.$route.name, list: this.$route.meta.list.map((element) => element.name) })
+      this.setLeftList({ title: this.$route.name, list: this.$route.meta.list.map((element) => element.name) })
     } else {
-      store.commit('setLeftList', { title: this.$route.matched[0].name, list: this.$route.matched[0].meta.list.map((element) => element.name) })
+      this.setLeftList({ title: this.$route.matched[0].name, list: this.$route.matched[0].meta.list.map((element) => element.name) })
     }
     this.$nextTick(() => {
       console.log(11)
@@ -40,6 +46,9 @@ export default {
       console.log(11)
       mdFunction()
     })
+  },
+  methods: {
+    ...mapMutations(['setLeftList'])
   }
 }
 </script>

@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     leftList: [],
-    activeLi: ''
+    activeLi: '',
+    isShowLeft: true
   },
   mutations: {
     setLeftList (state, val) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     setActiveLi (state, val) {
       state.activeLi = val
+    },
+    setIsShowLeft (state, val) {
+      state.isShowLeft = val
     }
   },
   actions: {

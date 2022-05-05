@@ -1,10 +1,16 @@
 <template>
-  <div class="leftnav">
+  <div class="leftnav"
+       :class="{'hide-leftnav':!isShowLeft}">
+    <div class="extend"
+         @click="hideLeft">{{isShowLeft?'收':'放' }}</div>
     <div class="title">
       {{ leftList.title }}
     </div>
     <ul>
-      <li v-for="item in leftList.list" :key="item" @click="routeJump(item)" :class="{'active':activeLi==item}">
+      <li v-for="item in leftList.list"
+          :key="item"
+          @click="routeJump(item)"
+          :class="{'active':activeLi==item}">
         {{ item }}
       </li>
     </ul>
@@ -12,12 +18,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   props: {
     list: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   },
   data () {
@@ -26,14 +32,19 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setIsShowLeft']),
     routeJump (val) {
       this.$router.push({ name: val })
+    },
+    hideLeft () {
+      this.setIsShowLeft(!this.isShowLeft)
     }
   },
   computed: {
     ...mapState([
       'leftList',
-      'activeLi'
+      'activeLi',
+      'isShowLeft'
     ])
   }
 }

@@ -28,7 +28,7 @@ const mdFc = (event) => {
   // 代码相关的处理
   document.querySelectorAll('code').forEach((block) => {
     const lastChild = block.parentNode.lastChild
-    if (lastChild.className !== 'codetype') {
+    if (lastChild.className !== 'codetype' && lastChild.className) {
       const codetypespan = document.createElement('span')
       codetypespan.className = 'codetype'
       codetypespan.innerText = lastChild.className.split('-')[1]
