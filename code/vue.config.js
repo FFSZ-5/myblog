@@ -7,7 +7,7 @@
  */
 module.exports = {
   productionSourceMap: true,
-  publicPath: process.env.VUE_APP_TYPE !== 'normal' ? '/' : './',
+  publicPath: process.env.VUE_APP_TYPE !== 'normal' ? '/' : '/myblog',
   css: {
     extract: true
   },
