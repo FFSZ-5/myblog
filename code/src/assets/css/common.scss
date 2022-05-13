@@ -159,6 +159,7 @@ $operator:#67cdcc;
 .home{
     height: 100%;
     width: 100%;
+    min-width: 1900px;
     overflow-y: auto;
     background-image: url('../img/texture.png');
     .github-right{
@@ -169,6 +170,7 @@ $operator:#67cdcc;
         height: .40rem;
         width: 2rem;
         background: rgba(255, 255, 255, 0.8);
+        z-index: 1;
         a{ 
             
             display: block;
@@ -197,14 +199,64 @@ $operator:#67cdcc;
         
     }
     .banner{
-        height: 80%;
+        height: 100%;
         width: 100%;
         position: relative;
-        div{
+        overflow: hidden;
+        .content{
             position: absolute;
-            left: 50%;
-            top: 40%;
-            transform: translateX(-50%) translateY(-50%);
+            height: 800px;
+            width: 600px;
+            right: 20%;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 10px;
+            .content-filter{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                filter: blur(2px);
+                background: rgba(129, 129, 129,.5);
+            }
+            ul{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                z-index: 1;
+                padding: 20px 20px;
+                box-sizing: border-box;
+                li{
+                    float: left;
+                    font-size: 16px;
+                    background-image: url('../img/边框.jpeg');
+                    background-size: 100% 100%;
+                    
+                }
+            }
+        }
+        canvas{
+            height: 100%!important;
+            width: 100%!important;
+        }
+        .top-mune{
+            height: 40px;
+            line-height: 40px;
+            padding: 0 10%;
+            font-size: 14px;
+            .book{
+                float: right;
+                li{
+                    color: rgb(121, 108, 108);
+                    cursor: pointer;
+                }
+            }
+        }
+        .title{
+            position: absolute;
+            left: 25%;
+            top: 35%;
             span{
                 display: block;
             }
@@ -216,27 +268,7 @@ $operator:#67cdcc;
             }
         }
     }
-    .content{
-        max-width: 12rem;
-        margin: 0 auto;
-        overflow: hidden;
-        display: flex;
-        flex-wrap: wrap;
-        padding: .2rem .4rem;
-        box-sizing: border-box;
-        .learn-item{
-            height: 50px;
-            width: 100px;
-            font-size: 16px;
-            margin-right: .5rem;
-            text-align: center;
-            line-height: 50px;
-            cursor: pointer;
-        }
-        .learn-item:last-child{
-            margin-right: 0;
-        }
-    }
+    
     &::-webkit-scrollbar {
         /*滚动条整体样式*/
         width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/

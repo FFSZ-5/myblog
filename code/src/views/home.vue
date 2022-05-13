@@ -1,17 +1,28 @@
 <template>
   <div class="home">
     <div class="banner">
-      <div>
+      <div class="top-mune">
+        <div class="book">
+          <ul>
+            <li v-for="item in book"
+                :key="item.key">{{item.content}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content-filter"></div>
+        <ul>
+          <li v-for="(key,value) in learnList"
+              :key="key"
+              @click="click(key)">{{value}}</li>
+        </ul>
+      </div>
+      <div class="title">
         <span>学习</span>
         <span>好好学习，天天向上</span>
       </div>
     </div>
-    <div class="content">
-      <div class="learn-item"
-           v-for="(key,value) in learnList"
-           :key="key"
-           @click="click(key)">{{value}}</div>
-    </div>
+
     <div class="github-right"><a href="https://github.com/FFSZ-5/myblog"
          target="_blank"><i class="github"></i><span>GitHub</span></a></div>
   </div>
@@ -24,7 +35,8 @@ export default {
   data () {
     return {
       vanta: null,
-      learnList: {}
+      learnList: {},
+      book: [{ key: 'learn-item', content: '学习目录' }]
     }
   },
   mounted () {
