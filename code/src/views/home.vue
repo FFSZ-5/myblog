@@ -57,6 +57,7 @@ export default {
     },
     getList () {
       var requireModule = require.context('../mdfile', true, /\.md$/)
+      console.log(requireModule.keys())
       var arr = []
       for (var i = 0; i < requireModule.keys().length; i++) {
         arr.push(
@@ -65,7 +66,7 @@ export default {
       }
       arr.map((element) => {
         if (!Object.keys(this.learnList).includes(element.split('/')[0])) {
-          this.learnList[element.split('/')[0]] = element.split('.')[0]
+          this.learnList[element.split('/')[0]] = element.split('/')[0] + '/' + element.split('/')[1].split('-')[1].split('.')[0]
         }
       })
       this.learnList = JSON.parse(JSON.stringify(this.learnList))

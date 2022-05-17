@@ -17,11 +17,12 @@ function getfilename () {
         components[key.split('/')[0]] = []
       }
       components[key.split('/')[0]].push({
-        path: key.split('/').pop().split('.')[0],
+        path: key.split('/').pop().split('-')[1].split('.')[0],
         name: key.split('/').pop().split('.')[0],
         component: () => import('../mdfile/' + key)
       })
     }
+    // console.log(components)
     const route = [{
       path: '/',
       name: 'Home',
@@ -62,8 +63,8 @@ router.beforeEach((to, from, next) => {
     console.log(newpath)
     next(newpath)
   } else {
-    document.title = '前端学习 | ' + to.name
-    store.commit('setActiveLi', to.name)
+    document.title = '前端学习 | ' + to.name.split('-')[1]
+    store.commit('setActiveLi', to.name.split('-')[1])
     next()
   }
 })

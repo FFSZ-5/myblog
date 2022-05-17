@@ -30,6 +30,7 @@ $number:#f08d49;
 $string:#7ec699;
 $property:#f8c555;
 $operator:#67cdcc;
+$forcus:orange;
 // 详情
 .detail {
     position: relative;
@@ -50,6 +51,7 @@ $operator:#67cdcc;
             width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
             height: 1px;
         }
+        
         &::-webkit-scrollbar-thumb {
             /*滚动条里面小方块*/
             border-radius: 10px;
@@ -335,4 +337,39 @@ $operator:#67cdcc;
             color: rgb(255, 147, 147);
         }
     }
+    important{
+        color:$forcus
+    }
+    .table{
+        margin:0 auto
+    }
+    .table td{
+        text-align:center
+    }
+    div{
+        vertical-align: middle;
+    }
+    justify{
+        position: relative;
+        padding-left: 1rem;
+        display: block;
+        content{
+            display: inline-block;
+            height: 100%;
+        }
+        span{
+            position: absolute;
+            left: 0;
+            display: inline-block;
+            text-align: justify;
+            width: 1rem;
+            height: 27px;
+        }
+        span::after{
+            display: inline-block;
+            width: 100%;
+            content: '';
+        }
+    }
+    
 }

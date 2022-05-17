@@ -32,12 +32,11 @@ export default {
   },
   created () {
     if (this.$route?.meta?.list) {
-      this.setLeftList({ title: this.$route.name, list: this.$route.meta.list.map((element) => element.name) })
+      this.setLeftList({ title: this.$route.name, list: this.$route.meta.list.map((element) => { return { name: element.name, path: element.path } }) })
     } else {
-      this.setLeftList({ title: this.$route.matched[0].name, list: this.$route.matched[0].meta.list.map((element) => element.name) })
+      this.setLeftList({ title: this.$route.matched[0].name, list: this.$route.matched[0].meta.list.map((element) => { return { name: element.name, path: element.path } }) })
     }
     this.$nextTick(() => {
-      console.log(11)
       mdFunction()
     })
   },
