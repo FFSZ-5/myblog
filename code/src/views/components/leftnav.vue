@@ -19,6 +19,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+import { storeFile } from '@/units/tool.js'
 export default {
   props: {
     list: {
@@ -34,14 +35,7 @@ export default {
   watch: {
     'leftList.list': {
       handler (val) {
-        const result = []
-        if (val && val.length > 0) {
-          for (const i of val) {
-            console.log(i.name)
-            result[Number(i.name.split('-')[0])] = i.name.split('.')[0].split('-')[1]
-          }
-        }
-        this.bookList = result
+        this.bookList = storeFile(val)
       },
       immediate: true
     }

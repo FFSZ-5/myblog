@@ -8,8 +8,8 @@
       <div class="md-detail markdown-body">
         <router-view></router-view>
       </div>
-
     </div>
+    <div class="vernier"></div>
   </div>
 </template>
 
@@ -27,24 +27,25 @@ export default {
     return {
     }
   },
+  watch: {
+    $route: {
+      handler (val) {
+        this.$nextTick(() => {
+          mdFunction()
+        })
+      },
+      immediate: true
+    }
+  },
   computed: {
     ...mapState(['isShowLeft'])
   },
   created () {
     if (this.$route?.meta?.list) {
-      this.setLeftList({ title: this.$route.name, list: this.$route.meta.list.map((element) => { return { name: element.name, path: element.path } }) })
+      this.setLeftList({ title: this.$route.name.split('-')[1], list: this.$route.meta.list.map((element) => { return { name: element.name, path: element.path } }) })
     } else {
-      this.setLeftList({ title: this.$route.matched[0].name, list: this.$route.matched[0].meta.list.map((element) => { return { name: element.name, path: element.path } }) })
+      this.setLeftList({ title: this.$route.matched[0].name.split('-')[1], list: this.$route.matched[0].meta.list.map((element) => { return { name: element.name, path: element.path } }) })
     }
-    this.$nextTick(() => {
-      mdFunction()
-    })
-  },
-  updated () {
-    this.$nextTick(() => {
-      console.log(11)
-      mdFunction()
-    })
   },
   methods: {
     ...mapMutations(['setLeftList'])

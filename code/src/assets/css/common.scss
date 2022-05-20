@@ -14,7 +14,10 @@ ul {
     padding: 0;
     list-style: none;
 }
-
+.center{
+    width: 1200px;
+    margin: 0 auto;
+}
 $background-color: #181818;
 $box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.6);
 $nav-height: 0.5rem;
@@ -38,6 +41,32 @@ $forcus:orange;
     height: 100%;
     width: 100%;
     background-image: url('../img/texture.png');
+    .vernier{
+        position: fixed;
+        right: 2%;
+        top: 13%;
+        height: 300px;
+        width: 150px;
+        overflow: hidden;
+        ul{
+            position: absolute;
+            top: 150px;
+            transition: all .7s;
+            li{
+                color: rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                transition: all .7s;
+                font-size: 16px;
+            }
+            .active{
+                color: rgba(0, 0, 0, 1);
+                font-size: 20px;
+                margin: 10px 0;
+                color: red;
+            }
+        }
+        
+    }
     .content {
         transition: all $transition-time;
         height: calc(100%-#{$nav-height});
@@ -46,6 +75,7 @@ $forcus:orange;
         box-sizing: border-box;
         padding: 50px 100px;
         overflow-y: auto;
+        
         &::-webkit-scrollbar {
             /*滚动条整体样式*/
             width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
@@ -205,60 +235,11 @@ $forcus:orange;
         width: 100%;
         position: relative;
         overflow: hidden;
-        .content{
-            position: absolute;
-            height: 800px;
-            width: 600px;
-            right: 20%;
-            top: 50%;
-            transform: translateY(-50%);
-            border-radius: 10px;
-            .content-filter{
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                top: 0;
-                left: 0;
-                filter: blur(2px);
-                background: rgba(129, 129, 129,.5);
-            }
-            ul{
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                z-index: 1;
-                padding: 20px 20px;
-                box-sizing: border-box;
-                li{
-                    float: left;
-                    font-size: 16px;
-                    background-image: url('../img/边框.jpeg');
-                    background-size: 100% 100%;
-                    
-                }
-            }
-        }
-        canvas{
-            height: 100%!important;
-            width: 100%!important;
-        }
-        .top-mune{
-            height: 40px;
-            line-height: 40px;
-            padding: 0 10%;
-            font-size: 14px;
-            .book{
-                float: right;
-                li{
-                    color: rgb(121, 108, 108);
-                    cursor: pointer;
-                }
-            }
-        }
         .title{
             position: absolute;
-            left: 25%;
+            left: 50%;
             top: 35%;
+            transform: translateY(-50%);
             span{
                 display: block;
             }
@@ -267,6 +248,23 @@ $forcus:orange;
             }
             span:nth-child(2){
                 font-size: .24rem;
+            }
+        }
+    }
+    .content{
+        border-radius: 10px;
+        padding: 20px;
+        ul{
+            height: 100%;
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            li{
+                float: left;
+                font-size: 16px;
+                background-image: url('../img/边框.jpeg');
+                background-size: 100% 100%;
+                
             }
         }
     }
@@ -371,5 +369,8 @@ $forcus:orange;
             content: '';
         }
     }
-    
+    .iframe{
+        margin: 0 auto;
+        height: 500px;
+    }
 }

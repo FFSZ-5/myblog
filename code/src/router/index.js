@@ -1,15 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
+import { getFileName } from '@/units/tool.js'
 Vue.use(VueRouter)
 function getfilename () {
-  var requireModule = require.context('../mdfile', true, /\.md$/)
-  var arr = []
-  for (var i = 0; i < requireModule.keys().length; i++) {
-    arr.push(
-      requireModule.keys()[i].substr(2, requireModule.keys()[i].length)
-    )
-  }
+  const arr = getFileName('mdfile')
   if (arr.length > 0) {
     const components = {}
     for (const key of arr) {
@@ -21,6 +16,7 @@ function getfilename () {
         name: key.split('/').pop().split('.')[0],
         component: () => import('../mdfile/' + key)
       })
+      console.log(require('../mdfile/3-html/1-标签.md'))
     }
     // console.log(components)
     const route = [{
@@ -60,11 +56,14 @@ router.beforeEach((to, from, next) => {
   console.log(to)
   if (to.path.includes('%')) {
     const newpath = decodeURIComponent(to.path)
-    console.log(newpath)
     next(newpath)
   } else {
-    document.title = '前端学习 | ' + to.name.split('-')[1]
-    store.commit('setActiveLi', to.name.split('-')[1])
+    if (to.name === 'Home') {
+      document.title = '学我想学'
+    } else {
+      document.title = to.path.split('/')[1].split('-')[1] + ' | ' + to.name.split('-')[1]
+      store.commit('setActiveLi', to.name.split('-')[1])
+    }
     next()
   }
 })
