@@ -1,19 +1,17 @@
 <template>
   <div class="home">
     <div class="banner">
-
       <div class="title">
-        <span>学习</span>
-        <span>好好学习，天天向上</span>
+      </div>
+      <div class="content">
+        <ul>
+          <li v-for="(item,index) in learnList"
+              :key="index"
+              @click="click(item.url)">{{item.name}}</li>
+        </ul>
       </div>
     </div>
-    <div class="content center">
-      <ul>
-        <li v-for="(item,index) in learnList"
-            :key="index"
-            @click="click(item.url)">{{item.name}}</li>
-      </ul>
-    </div>
+
     <div class="github-right"><a href="https://github.com/FFSZ-5/myblog"
          target="_blank"><i class="github"></i><span>GitHub</span></a></div>
   </div>
