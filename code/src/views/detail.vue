@@ -10,6 +10,8 @@
       </div>
     </div>
     <div class="vernier"></div>
+    <div class="to-top"
+         @click="toTop">去顶部</div>
   </div>
 </template>
 
@@ -31,6 +33,7 @@ export default {
     $route: {
       handler (val) {
         this.$nextTick(() => {
+          this.toTop()
           mdFunction()
         })
       },
@@ -48,7 +51,13 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setLeftList'])
+    ...mapMutations(['setLeftList']),
+    toTop () {
+      const content = document.querySelector('.content')
+      if (content) {
+        content.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
   }
 }
 </script>

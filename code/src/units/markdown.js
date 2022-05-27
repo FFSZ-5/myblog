@@ -96,6 +96,13 @@ const mdFc = (event) => {
     })
   })
   document.querySelector('.content').addEventListener('scroll', (e) => {
+    if (e.target.scrollTop > 300) {
+      const toTop = document.querySelector('.to-top')
+      toTop.style.display = 'block'
+    } else {
+      const toTop = document.querySelector('.to-top')
+      toTop.style.display = 'none'
+    }
     if (timer) {
       clearTimeout(timer)
     }
@@ -106,13 +113,15 @@ const mdFc = (event) => {
       const scrollTop = e.target.scrollTop
       h2.forEach((element, index) => {
         const ele = document.querySelector(`#h-${index}`)
-        const childTop = ele.offsetTop
-        const accuracy = 15
-        if (childTop - accuracy < scrollTop && scrollTop < childTop + accuracy) {
-          document.querySelector(`.ver-${active}`).classList.remove('active')
-          active = index
-          document.querySelector(`.ver-${active}`).classList.add('active')
-          changeActive()
+        if (ele) {
+          const childTop = ele.offsetTop
+          const accuracy = 15
+          if (childTop - accuracy < scrollTop && scrollTop < childTop + accuracy) {
+            document.querySelector(`.ver-${active}`).classList.remove('active')
+            active = index
+            document.querySelector(`.ver-${active}`).classList.add('active')
+            changeActive()
+          }
         }
       })
     }

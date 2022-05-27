@@ -50,7 +50,10 @@ const routes = getfilename()
 const router = new VueRouter({
   mode: 'history',
   base: process.env.VUE_APP_URL,
-  routes
+  routes,
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  }
 })
 router.beforeEach((to, from, next) => {
   console.log(to)
