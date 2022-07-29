@@ -2,7 +2,7 @@
  * @FilePath: \code\src\units\markdown.js
  * @Version: 2.0
  * @LastEditors: lhl
- * @LastEditTime: 2022-04-24 17:38:19
+ * @LastEditTime: 2022-07-29 14:01:03
  * @Description:markdown相关的拓展
  */
 // 点击复制
@@ -20,46 +20,49 @@ const toClipboard = (copySpan) => {
   return false
 }
 // 页面加载完毕添加事件
-const mdFc = (event) => {
+const mdFc = (event, eventul, activeClassName) => {
   document.querySelectorAll('article').forEach((block) => {
     block.classList.add('markdown-body')
   })
   // 代码相关的处理
   document.querySelectorAll('code').forEach((block) => {
-    const lastChild = block.parentNode.lastChild
-    if (lastChild.className !== 'codetype' && lastChild.className) {
-      const codetypespan = document.createElement('span')
-      codetypespan.className = 'codetype'
-      codetypespan.innerText = lastChild.className.split('-')[1]
-      codetypespan.onmouseenter = () => {
-        codetypespan.innerText = '点击复制'
-      }
-      codetypespan.onmouseleave = () => {
-        codetypespan.innerText = lastChild.className.split('-')[1]
-        codetypespan.classList.remove('active', 'unactive')
-      }
-      codetypespan.onclick = () => {
-        if (toClipboard(block)) {
-          codetypespan.innerText = '复制成功'
-          codetypespan.classList.add('active')
-        } else {
-          codetypespan.innerText = '复制失败'
-          codetypespan.classList.add('unactive')
-        }
-      }
-      block.parentNode.appendChild(codetypespan)
+    const codetypespan = document.createElement('span')
+    codetypespan.className = 'codetype'
+    console.log(block.className)
+    codetypespan.innerText = block.className.match(/language-([a-z]{0,10})/)[1]
+    codetypespan.onmouseenter = () => {
+      codetypespan.innerText = '点击复制'
     }
+    codetypespan.onmouseleave = () => {
+      codetypespan.innerText = block.className.match(/language-([a-z]{0,10})/)[1]
+      codetypespan.classList.remove('active', 'unactive')
+    }
+    codetypespan.onclick = () => {
+      if (toClipboard(block)) {
+        codetypespan.innerText = '复制成功'
+        codetypespan.classList.add('active')
+      } else {
+        codetypespan.innerText = '复制失败'
+        codetypespan.classList.add('unactive')
+      }
+    }
+    block.parentNode.appendChild(codetypespan)
   })
   // 游标生成
   const h2 = []
   let active = ''
   let timer = null
   let isclick = false
-  document.querySelectorAll('.markdown-body h2').forEach((block, index) => {
+  document.querySelectorAll('.markdown-body ' + event).forEach((block, index) => {
     if (index === 0) {
       active = index
     }
-    const id = block.innerHTML.includes('.') ? block.innerHTML.split('.')[1] : block.innerHTML
+    let id
+    if (event === eventul) {
+      id = block.innerHTML.includes('.') ? block.innerHTML.split('.')[1] : block.innerHTML
+    } else {
+      id = block.querySelector(eventul).innerHTML.includes('.') ? block.querySelector(eventul).innerHTML.split('.')[1] : block.querySelector(eventul).innerHTML
+    }
     block.setAttribute('id', `h-${index}`)
     h2.push(id)
   })
@@ -89,8 +92,10 @@ const mdFc = (event) => {
     document.querySelector(`.ver-${index}`).addEventListener('click', (e) => {
       isclick = true
       document.querySelector(`.ver-${active}`).classList.remove('active')
+      document.querySelector(`#h-${active}`).classList.remove(activeClassName)
       active = index
       document.querySelector(`.ver-${active}`).classList.add('active')
+      document.querySelector(`#h-${active}`).classList.add(activeClassName)
       document.querySelector(`#h-${index}`).scrollIntoView({ behavior: 'smooth' })
       changeActive()
     })
@@ -118,6 +123,7 @@ const mdFc = (event) => {
           const accuracy = 15
           if (childTop - accuracy < scrollTop && scrollTop < childTop + accuracy) {
             document.querySelector(`.ver-${active}`).classList.remove('active')
+            document.querySelector(`#h-${active}`).classList.remove(activeClassName)
             active = index
             document.querySelector(`.ver-${active}`).classList.add('active')
             changeActive()

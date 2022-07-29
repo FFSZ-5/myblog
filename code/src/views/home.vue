@@ -1,3 +1,10 @@
+<!--
+ * @FilePath: \code\src\views\home.vue
+ * @Version: 2.0
+ * @LastEditors: lhl
+ * @LastEditTime: 2022-07-21 16:15:14
+ * @Description:
+-->
 <template>
   <div class="home">
     <div class="banner">
@@ -42,12 +49,11 @@ export default {
       var arr = getFileName('mdfile')
       arr.map((element) => {
         if (!Object.keys(this.learnList).includes(element.split('/')[0])) {
-          this.learnList[element.split('/')[0]] = element.split('/')[0] + '/' + element.split('/')[1].split('-')[1].split('.')[0]
+          this.learnList[element.split('/')[0]] = element.split('/')[0].split('-')[1] + '/' + element.split('/')[1].split('-')[1].split('.')[0]
         }
       })
       // this.learnList = JSON.parse(JSON.stringify(this.learnList))
       this.learnList = storeFile(this.learnList, true)
-      console.log(this.learnList)
     }
   }
 }

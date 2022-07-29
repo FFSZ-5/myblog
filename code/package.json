@@ -10,8 +10,10 @@
   "dependencies": {
     "axios": "^0.26.1",
     "core-js": "^3.6.5",
+    "highlight.js": "^11.6.0",
     "process": "^0.11.10",
     "vue": "^2.6.11",
+    "vue-lfcomponents": "^1.0.10",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
@@ -31,7 +33,6 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
     "github-markdown-css": "^4.0.0",
-    "highlight.js": "^10.5.0",
     "html-loader": "^1.3.2",
     "markdown-it": "^12.0.4",
     "markdown-it-container": "^3.0.0",
@@ -56,7 +57,7 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "no-debugger":"off"
+      "no-debugger": "off"
     }
   },
   "browserslist": [

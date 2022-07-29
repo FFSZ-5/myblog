@@ -2,7 +2,7 @@
  * @FilePath: \code\vue.config.js
  * @Version: 2.0
  * @LastEditors: lhl
- * @LastEditTime: 2022-04-24 14:27:35
+ * @LastEditTime: 2022-07-29 11:25:12
  * @Description:
  */
 const path = require('path')
@@ -16,12 +16,6 @@ module.exports = {
   css: {
     extract: true,
     sourceMap: false
-  },
-  devServer: {
-    host: 'localhost',
-    port: 8080, // 端口号
-    open: true, // 配置自动启动浏览器
-    disableHostCheck: true
   },
   configureWebpack: (config) => {
     config.optimization = {

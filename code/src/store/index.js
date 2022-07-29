@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    //  md左侧导航栏
     leftList: [],
     activeLi: '',
-    isShowLeft: true
+    isShowLeft: true,
+    //  drag
+    startDrag: false
   },
   mutations: {
+    //  md左侧导航栏
     setLeftList (state, val) {
       state.leftList = val
     },
@@ -18,6 +22,10 @@ export default new Vuex.Store({
     },
     setIsShowLeft (state, val) {
       state.isShowLeft = val
+    },
+    //  drag
+    setStartDrag (state, val) {
+      state.startDrag = val
     }
   },
   actions: {

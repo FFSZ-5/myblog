@@ -1,3 +1,10 @@
+/*
+ * @FilePath: \code\src\router\index.js
+ * @Version: 2.0
+ * @LastEditors: lhl
+ * @LastEditTime: 2022-07-29 09:27:24
+ * @Description:
+ */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
@@ -16,17 +23,31 @@ function getfilename () {
         name: key.split('/').pop().split('.')[0],
         component: () => import('../mdfile/' + key)
       })
-      console.log(require('../mdfile/3-html/1-标签.md'))
     }
     // console.log(components)
     const route = [{
       path: '/',
       name: 'Home',
+      meta: {
+        title: '学我想学'
+      },
       component: () => import('@/views/home.vue')
+    }, {
+      path: '/drag',
+      name: 'drag',
+      meta: {
+        title: '拖拽测试'
+      },
+      component: () => import('@/views/candrag/index.vue')
+    }, {
+      path: '/lfcomponents',
+      name: 'lfcomponents',
+      component: () => import('@/views/vueC/index.vue')
     }]
     for (const key in components) {
+      const newkey = key.split('-')[1]
       route.push({
-        path: '/' + key,
+        path: '/' + newkey,
         name: key,
         title: key,
         component: () => import('../views/detail.vue'),
@@ -56,15 +77,15 @@ const router = new VueRouter({
   }
 })
 router.beforeEach((to, from, next) => {
-  console.log(to)
   if (to.path.includes('%')) {
     const newpath = decodeURIComponent(to.path)
     next(newpath)
   } else {
-    if (to.name === 'Home') {
-      document.title = '学我想学'
+    if (to.meta?.title) {
+      document.title = to.meta.title
     } else {
-      document.title = to.path.split('/')[1].split('-')[1] + ' | ' + to.name.split('-')[1]
+      console.log(to)
+      document.title = to.path.split('/')[1] + ' | ' + to.name.split('-')[1]
       store.commit('setActiveLi', to.name.split('-')[1])
     }
     next()

@@ -1,9 +1,16 @@
+/*
+ * @FilePath: \code\src\units\tool.js
+ * @Version: 2.0
+ * @LastEditors: lhl
+ * @LastEditTime: 2022-07-29 09:27:52
+ * @Description:
+ */
 // 获取特定文件夹下的文件名
 function getName (val) {
   var arr = []
   switch (val) {
     case 'mdfile': {
-      var requireModule = require.context('../mdfile', true, /\.md$/)
+      var requireModule = require.context('../mdfile', true, /[.md|.vue]$/)
       for (var i = 0; i < requireModule.keys().length; i++) {
         arr.push(
           requireModule.keys()[i].substr(2, requireModule.keys()[i].length)

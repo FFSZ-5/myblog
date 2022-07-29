@@ -2,11 +2,13 @@
 #app,
 html,
 body {
+    position: relative;
     overflow: hidden;
     padding: 0;
     margin: 0;
     height: 100%;
     width: 100%;
+    --left:20;
 }
 
 ul {
@@ -36,6 +38,50 @@ $property:#f8c555;
 $operator:#67cdcc;
 $forcus:orange;
 $comment:rgb(68, 204, 68);
+
+//拖拽页面
+.move-element{
+    position: absolute;
+    z-index: 99;
+}
+.drag {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  &-right {
+    position: absolute;
+  }
+  &-left,&-content{
+    box-sizing: border-box;
+    float: left;
+    height: 100%;
+    transition: all 1s;
+  }
+  &-left {
+    border-right: 1px solid black;
+    text-align: center;
+    padding: 10px;
+    &-list{
+        margin: 0 auto;
+        user-select: none;
+    }
+  }
+  &-content {
+    .content{
+        position: relative;
+        width: 70%;
+        height: 100%;
+        margin: 0 auto;
+        border: 1px solid red;
+        .content-circle{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border: 1px solid red;
+        }
+    }
+  }
+}
 // 详情
 .detail {
     position: relative;
@@ -50,6 +96,7 @@ $comment:rgb(68, 204, 68);
         height: 300px;
         width: 150px;
         overflow: hidden;
+        user-select: none;
         ul{
             position: absolute;
             top: 150px;
@@ -62,7 +109,6 @@ $comment:rgb(68, 204, 68);
             }
             .active{
                 color: rgba(0, 0, 0, 1);
-                font-size: 20px;
                 margin: 10px 0;
                 color: red;
             }
@@ -148,7 +194,6 @@ $comment:rgb(68, 204, 68);
         margin-left: 0!important;
     }
 }
-
 //顶部
 .nav {
     height: $nav-height;
@@ -360,6 +405,18 @@ $comment:rgb(68, 204, 68);
         background   : rgba(255, 255, 255, 0.1);
     }
 }
+
+//组件样式
+.lf-code-box{
+    margin-bottom: 20px;
+}
+.lf-collapse-body-artical{
+    pre{
+        background-color: white!important;
+        color: black!important;
+    }
+    
+}
 /* markdown样式 */
 .markdown-body {
     h1{
@@ -485,6 +542,20 @@ $comment:rgb(68, 204, 68);
         }
     }
 }
+
+.circle{
+    transform-origin: 100px 100px!important;
+    transform: rotateZ(-90deg);
+    transition: all;
+}
+//组件库页面
+.vue-c{
+    font-size: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+
 //动画
 //骷髅头
 @keyframes head {

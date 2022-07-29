@@ -1,3 +1,10 @@
+<!--
+ * @FilePath: \code\src\views\detail.vue
+ * @Version: 2.0
+ * @LastEditors: lhl
+ * @LastEditTime: 2022-07-29 09:31:32
+ * @Description:
+-->
 
 <template>
   <div class="detail">
@@ -34,7 +41,11 @@ export default {
       handler (val) {
         this.$nextTick(() => {
           this.toTop()
-          mdFunction()
+          if (decodeURIComponent(window.location.href).includes('组件库')) {
+            mdFunction('.lf-code-box', '.message-title', 'code-box-active')
+          } else {
+            mdFunction('h2', 'h2', 'hactive')
+          }
         })
       },
       immediate: true
